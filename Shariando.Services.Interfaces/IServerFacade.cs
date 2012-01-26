@@ -8,11 +8,4 @@ namespace Shariando.Services.Interfaces
         IList<IShop> LoadList(string email);
         string LinkForShop(IShop shop);
     }
-
-    public interface IShop
-    {
-        int Id { get; }
-        string Name { get; }
-        string Description { get; }
-    }
 }

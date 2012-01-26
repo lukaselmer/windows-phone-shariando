@@ -16,9 +16,9 @@ namespace Shariando.Services
 
             using (MemoryStream jsonStream = new MemoryStream(Encoding.Unicode.GetBytes(jsonString)))
             {
-                /*DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(List<int>));
-                List<int> array = serializer.ReadObject(jsonStream) as List<int>;
-                listArray = array;*/
+                //DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(List<int>));
+                //List<int> array = serializer.ReadObject(jsonStream) as List<int>;
+                //listArray = array;
             }
 
             return true;

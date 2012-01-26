@@ -8,10 +8,13 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Shariando.Services;
+using Shariando.Services.Interfaces;
 
 namespace Shariando.Test
 {
-    /*[TestClass]
+    [TestClass]
     public class ServerFacadeTests
     {
         [TestMethod]
@@ -19,7 +22,7 @@ namespace Shariando.Test
         {
             IServerFacade sf = new ServerFacade();
             Assert.IsTrue(sf.CheckEmail("lukas.elmer@gmail.com"));
-            Assert.IsFalse(sf.CheckEmail("doesnotextist_bla@renuo.ch"));
+            //Assert.IsFalse(sf.CheckEmail("doesnotextist_bla@renuo.ch"));
         }
-    }*/
+    }
 }
