@@ -1,7 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.IO;
 //using System.Runtime.Serialization;
 //using System.Runtime.Serialization.Json;
+using System.Linq;
+using System.Net;
+using System.Runtime.Serialization.Json;
 using System.Text;
 using Shariando.Services.Interfaces;
 
@@ -9,29 +14,55 @@ namespace Shariando.Services
 {
     public class ServerFacade : IServerFacade
     {
-        public bool CheckEmail(string email)
+        public void CheckEmail(string email, Action<IList<IShop>> callback)
         {
-            string jsonString = "[ 1, 2, 3, 4, 5, 6 ]";
-            List<int> listArray = new List<int>();
+            SendPost(email);
+        }
 
-            using (MemoryStream jsonStream = new MemoryStream(Encoding.Unicode.GetBytes(jsonString)))
+        void SendPost(string email)
+        {
+            string url = string.Format("https://shariando.com/shops.json?email={0}", HttpUtility.UrlEncode(email));
+            HttpWebRequest webRequest = (HttpWebRequest)WebRequest.Create(url);
+            webRequest.BeginGetResponse(new AsyncCallback(GetResponseCallback), webRequest);
+        }
+
+        void GetResponseCallback(IAsyncResult asynchronousResult)
+        {
+            try
             {
-                //DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(List<int>));
-                //List<int> array = serializer.ReadObject(jsonStream) as List<int>;
-                //listArray = array;
+                HttpWebRequest webRequest = (HttpWebRequest)asynchronousResult.AsyncState;
+                HttpWebResponse response;
+
+                // End the get response operation
+                response = (HttpWebResponse)webRequest.EndGetResponse(asynchronousResult);
+                Stream streamResponse = response.GetResponseStream();
+                StreamReader streamReader = new StreamReader(streamResponse);
+                var json = streamReader.ReadToEnd();
+                streamResponse.Close();
+                streamReader.Close();
+                response.Close();
+
+                ProcessJson(json);
             }
-
-            return true;
+            catch (WebException e)
+            {
+                // Error treatment
+                // ...
+            }
         }
 
-        public IList<IShop> LoadList(string email)
+        private void ProcessJson(string json)
         {
-            throw new System.NotImplementedException();
+            //json = "[{\"active\":true,\"description\":{\"de\":\"Peach ist seit mehr als 10 Jahren im Markt und ist laut GfK Marktf\u00fchrer f\u00fcr kompatible Tintenpatronen in der Schweiz. Das Programm umfasst zudem Tonermodule, Fotopapier, Refills und dies zu Preisen von bis zu 50% unter dem Preis der Originalhersteller.\n\"},\"id\":2,\"name\":\"3ppp3.ch Tintenshop\",\"shop_logo_file_name\":\"642e92efb79421734881b53e1e1b18b6.gif\"}]";
+            DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(List<Shop>));
+            using (MemoryStream jsonStream = new MemoryStream(Encoding.Unicode.GetBytes(json)))
+            {
+                List<Shop> shops = (List<Shop>)serializer.ReadObject(jsonStream);
+                IList<IShop> res = shops.Cast<IShop>().ToList();
+                Console.WriteLine(res);
+            }
         }
 
-        public string LinkForShop(IShop shop)
-        {
-            throw new System.NotImplementedException();
-        }
+
     }
 }

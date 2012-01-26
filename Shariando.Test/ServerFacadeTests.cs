@@ -21,7 +21,7 @@ namespace Shariando.Test
         public void TestMethod1()
         {
             IServerFacade sf = new ServerFacade();
-            Assert.IsTrue(sf.CheckEmail("lukas.elmer@gmail.com"));
+            //Assert.IsTrue(sf.CheckEmail("lukas.elmer@renuo.ch"));
             //Assert.IsFalse(sf.CheckEmail("doesnotextist_bla@renuo.ch"));
         }
     }

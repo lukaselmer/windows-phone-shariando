@@ -1,11 +1,12 @@
+using System;
 using System.Collections.Generic;
 
 namespace Shariando.Services.Interfaces
 {
     public interface IServerFacade
     {
-        bool CheckEmail(string email);
-        IList<IShop> LoadList(string email);
-        string LinkForShop(IShop shop);
+        void CheckEmail(string email, Action<IList<IShop>> callback);
+        //IList<IShop> LoadList(string email);
+        //string LinkForShop(IShop shop);
     }
 }

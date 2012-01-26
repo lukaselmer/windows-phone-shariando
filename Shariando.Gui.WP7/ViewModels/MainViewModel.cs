@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Collections.ObjectModel;
+using Shariando.Services;
 
 
 namespace Shariando.Gui.WP7
@@ -20,6 +21,7 @@ namespace Shariando.Gui.WP7
     {
         public MainViewModel()
         {
+            new ServerFacade().CheckEmail("lukas.elmer@renuo.ch", list => { });
             this.Items = new ObservableCollection<ItemViewModel>();
         }
 
