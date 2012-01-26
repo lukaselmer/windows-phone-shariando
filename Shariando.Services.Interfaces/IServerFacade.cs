@@ -5,7 +5,7 @@ namespace Shariando.Services.Interfaces
 {
     public interface IServerFacade
     {
-        void CheckEmail(string email, Action<IList<IShop>> callback);
+        void CheckEmail(string email);
         //IList<IShop> LoadList(string email);
         //string LinkForShop(IShop shop);
     }

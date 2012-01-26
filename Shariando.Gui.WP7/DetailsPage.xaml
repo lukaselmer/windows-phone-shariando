@@ -30,7 +30,7 @@
         <!--ContentPanel contains details text. Place additional content here-->
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
             <!--<TextBlock x:Name="ContentText" Text="{Binding ImageUrl}" TextWrapping="Wrap" Style="{StaticResource PhoneTextNormalStyle}"/>-->
-            <Image Source="{Binding Image}" Stretch="Fill" VerticalAlignment="Top" Width="200"/>
+            <Image Source="{Binding ImageUrl}" Stretch="Fill" VerticalAlignment="Top" Width="150" Height="100" HorizontalAlignment="Left" Margin="0" />
         </Grid>
     </Grid>
  

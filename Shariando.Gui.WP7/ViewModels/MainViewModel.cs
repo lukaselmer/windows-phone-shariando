@@ -3,6 +3,7 @@ using System.ComponentModel;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
+using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -12,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Collections.ObjectModel;
+using System.Windows.Threading;
 using Shariando.Services;
 using Shariando.Services.Interfaces;
 
@@ -20,19 +22,26 @@ namespace Shariando.Gui.WP7
 {
     public class MainViewModel : INotifyPropertyChanged
     {
+        private ServerFacade _serverFacade = new ServerFacade();
+
         public MainViewModel()
         {
-            new ServerFacade().CheckEmail("lukas.elmer@renuo.ch", SetItems);
-            this.Items = new ObservableCollection<ItemViewModel>();
+            _serverFacade.ShopsChanged += UpdateItems;
+            _serverFacade.CheckEmail("lukas.elmer@renuo.ch");
+            Items = new ObservableCollection<ItemViewModel>();
         }
 
-        private void SetItems(IList<IShop> shops)
+        private void UpdateItems(IList<IShop> shops)
         {
-            Items.Clear();
-            foreach (var shop in shops)
+
+            Deployment.Current.Dispatcher.BeginInvoke(() =>
             {
-                Items.Add(new ItemViewModel(shop));
-            }
+                Items.Clear();
+                foreach (var shop in shops)
+                {
+                    Items.Add(new ItemViewModel(shop));
+                }
+            });
         }
 
         /// <summary>
@@ -72,7 +81,7 @@ namespace Shariando.Gui.WP7
         /// </summary>
         public void LoadData()
         {
-            Items.Add(new ItemViewModel(new Shop { Id = 12, Name = "DeinDeal.ch", ImageName = "a1d0c6e83f027327d8461063f4ac58a6.gif?1316176208" }));
+            Items.Add(new ItemViewModel(new Shop { Id = 12, Name = "DeinDeal.ch", ImageName = "a1d0c6e83f027327d8461063f4ac58a6.gif" }));
             IsDataLoaded = true;
         }
 

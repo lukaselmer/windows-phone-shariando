@@ -26,11 +26,8 @@ namespace Shariando.Services
         {
             get
             {
-                return "http://www.elmermx.ch/typo3temp/pics/1951305aaf.jpg";
-                return
-                    "https://shariando.com/upload_files/shop_logos/12/original/a1d0c6e83f027327d8461063f4ac58a6.gif?1316176208";
-                return String.Format("https://shariando.com/upload_files/shop_logos/{0}/original/{1}",
-                    Id, HttpUtility.UrlEncode(ImageName));
+                return String.Format("https://shariando.com/upload_files/shop_logos/{0}/png/{1}",
+                    Id, HttpUtility.UrlEncode(ImageName.Replace(".gif", ".png")));
             }
         }
 
@@ -38,7 +35,7 @@ namespace Shariando.Services
         {
             get
             {
-                var image = new BitmapImage();
+                //var image = new BitmapImage();
                 /*image.BeginInit();
                 image.StreamSource = File.OpenRead(ImageUrl);
                 image.EndInit();

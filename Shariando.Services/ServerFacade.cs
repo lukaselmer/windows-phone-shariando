@@ -19,7 +19,7 @@ namespace Shariando.Services
 
         public event ShopsChange ShopsChanged;
 
-        public void CheckEmail(string email, Action<IList<IShop>> callback)
+        public void CheckEmail(string email)
         {
             SendPost(email);
         }
