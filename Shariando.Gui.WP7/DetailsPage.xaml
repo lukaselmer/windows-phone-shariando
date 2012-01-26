@@ -29,8 +29,18 @@
 
         <!--ContentPanel contains details text. Place additional content here-->
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
-            <!--<TextBlock x:Name="ContentText" Text="{Binding ImageUrl}" TextWrapping="Wrap" Style="{StaticResource PhoneTextNormalStyle}"/>-->
-            <Image Source="{Binding ImageUrl}" Stretch="Fill" VerticalAlignment="Top" Width="150" Height="100" HorizontalAlignment="Left" Margin="0" />
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="170*" />
+                <ColumnDefinition Width="286*" />
+            </Grid.ColumnDefinitions>
+            <TextBlock x:Name="ContentText" Text="{Binding Description}" TextWrapping="Wrap" Style="{StaticResource PhoneTextNormalStyle}" Grid.Column="1" Margin="0,0,12,0" />
+            <StackPanel>
+                <Image Source="{Binding ImageUrl}" Stretch="Fill" Width="150" Height="100" Margin="6,6,0,6" HorizontalAlignment="Left" />
+                <TextBlock FontSize="22" TextAlignment="Center">Mindestens</TextBlock>
+                <TextBlock Text="{Binding Cashback}" FontSize="25" FontWeight="Bold" TextAlignment="Center" />
+                <TextBlock FontSize="22" TextAlignment="Center">Cashback</TextBlock>
+                <Button Content="zum Shop" Height="71" HorizontalAlignment="Left" Margin="6,0,6,0" Name="button1" VerticalAlignment="Top" Width="150" FontSize="22" />
+            </StackPanel>
         </Grid>
     </Grid>
  

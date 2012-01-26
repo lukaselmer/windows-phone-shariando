@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Runtime.Serialization;
 using System.Windows.Media.Imaging;
 
@@ -5,14 +6,16 @@ namespace Shariando.Services.Interfaces
 {
     public interface IShop
     {
-        int Id { get; set; }
+        int Id { get; }
 
-        string Name { get; set; }
+        string Name { get; }
 
-        string ImageName { get; set; }
+        string Description { get; }
+
+        string Cashback { get; }
+
+        string ImageName { get; }
 
         string ImageUrl { get; }
-
-        BitmapImage Image { get; }
     }
 }

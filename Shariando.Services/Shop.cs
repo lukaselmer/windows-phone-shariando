@@ -2,11 +2,11 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Net;
 using System.Runtime.Serialization;
 using System.Windows.Media.Imaging;
 using Shariando.Services.Interfaces;
-// DataContractJsonSerializer
 
 namespace Shariando.Services
 {
@@ -19,8 +19,16 @@ namespace Shariando.Services
         [DataMember(Name = "name")]
         public string Name { get; set; }
 
+        [DataMember(Name = "description")]
+        public TranslatedDescription AllDescriptions { get; set; }
+        public string Description { get { return AllDescriptions == null ? "" : AllDescriptions.Default(); } }
+
+        [DataMember(Name = "amount_text")]
+        public string Cashback { get; set; }
+
         [DataMember(Name = "shop_logo_file_name")]
         public string ImageName { get; set; }
+
 
         public string ImageUrl
         {
@@ -31,22 +39,36 @@ namespace Shariando.Services
             }
         }
 
-        public BitmapImage Image
+        [DataContract]
+        public class TranslatedDescription
         {
-            get
+            [DataMember(Name = "de")]
+            public string De { get; set; }
+            [DataMember(Name = "en")]
+            public string En { get; set; }
+            [DataMember(Name = "dk")]
+            public string Dk { get; set; }
+            [DataMember(Name = "fi")]
+            public string Fi { get; set; }
+            [DataMember(Name = "nl")]
+            public string Nl { get; set; }
+
+            public string Default()
             {
-                //var image = new BitmapImage();
-                /*image.BeginInit();
-                image.StreamSource = File.OpenRead(ImageUrl);
-                image.EndInit();
-                image.Freeze();
-                return image;*/
-                return new BitmapImage(new Uri(ImageUrl, UriKind.Absolute));
+                var replacements = new Dictionary<string, string>
+                    {
+                        {"<br/>", "\n"},                       
+                        {"<br>", "\n"},                       
+                        {"<p>", "\n"},                      
+                        {"</p>", ""},
+                        {"<strong>", ""},                       
+                        {"</strong>", ""},                       
+                    };
+                var arr = new List<string> { De, En, Dk, Fi, Nl, "" };
+                var str = arr.First(s => !string.IsNullOrEmpty(s));
+                return replacements.Aggregate(str, (current, replacement) => current.Replace(replacement.Key, replacement.Value));
             }
         }
-
-
-        //public Dictionary<Object, Object> Description { get; set; }
-
     }
+
 }
