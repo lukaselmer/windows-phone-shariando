@@ -5,12 +5,12 @@
     SampleProperty="Sample Text Property Value">
     
     <local:MainViewModel.Items>
-        <local:ItemViewModel LineOne="design one" LineTwo="Maecenas praesent accumsan bibendum" LineThree="Maecenas praesent accumsan bibendum dictumst eleifend facilisi faucibus habitant inceptos interdum lobortis nascetur"/>
-        <local:ItemViewModel LineOne="design two" LineTwo="Dictumst eleifend facilisi faucibus" LineThree="Pharetra placerat pulvinar sagittis senectus sociosqu suscipit torquent ultrices vehicula volutpat maecenas praesent"/>
-        <local:ItemViewModel LineOne="design three" LineTwo="Habitant inceptos interdum lobortis" LineThree="Accumsan bibendum dictumst eleifend facilisi faucibus habitant inceptos interdum lobortis nascetur pharetra placerat"/>
-        <local:ItemViewModel LineOne="design four" LineTwo="Nascetur pharetra placerat pulvinar" LineThree="Pulvinar sagittis senectus sociosqu suscipit torquent ultrices vehicula volutpat maecenas praesent accumsan bibendum"/>
-        <local:ItemViewModel LineOne="design five" LineTwo="Sagittis senectus sociosqu suscipit" LineThree="Dictumst eleifend facilisi faucibus habitant inceptos interdum lobortis nascetur pharetra placerat pulvinar sagittis"/>
-        <local:ItemViewModel LineOne="design six" LineTwo="Torquent ultrices vehicula volutpat" LineThree="Senectus sociosqu suscipit torquent ultrices vehicula volutpat maecenas praesent accumsan bibendum dictumst eleifend"/>
+        <local:ItemViewModel Name="Yves Rocher" ImageUrl="https://shariando.com/upload_files/shop_logos/81/original/d09bf41544a3365a46c9077ebb5e35c3.gif?1316176213"/>
+        <local:ItemViewModel Name="Manor" ImageUrl="https://shariando.com/upload_files/shop_logos/32/original/f899139df5e1059396431415e770c6dd.gif?1316176210"/>
+        <local:ItemViewModel Name="Air France CH" ImageUrl="https://shariando.com/upload_files/shop_logos/4/original/44f683a84163b3523afe57c2e008bc8c.gif?1316176207"/>
+        <local:ItemViewModel Name="Brack.ch" ImageUrl="https://shariando.com/upload_files/shop_logos/8/original/182be0c5cdcd5072bb1864cdee4d3d6e.gif?1316176208"/>
+        <local:ItemViewModel Name="DeinDeal.ch" ImageUrl="https://shariando.com/upload_files/shop_logos/12/original/a1d0c6e83f027327d8461063f4ac58a6.gif?1316176208"/>
+        <local:ItemViewModel Name="Dell" ImageUrl="https://shariando.com/upload_files/shop_logos/13/original/c8ffe9a587b126f152ed3d89a146b445.gif?1316176208"/>
     </local:MainViewModel.Items>
     
 </local:MainViewModel>

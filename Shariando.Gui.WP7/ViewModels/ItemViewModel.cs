@@ -9,71 +9,51 @@ using System.Windows.Ink;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
+using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Shariando.Services.Interfaces;
 
 namespace Shariando.Gui.WP7
 {
     public class ItemViewModel : INotifyPropertyChanged
     {
-        private string _lineOne;
-        /// <summary>
-        /// Sample ViewModel property; this property is used in the view to display its value using a Binding.
-        /// </summary>
-        /// <returns></returns>
-        public string LineOne
+        public ItemViewModel(IShop shop)
         {
-            get
-            {
-                return _lineOne;
-            }
-            set
-            {
-                if (value != _lineOne)
-                {
-                    _lineOne = value;
-                    NotifyPropertyChanged("LineOne");
-                }
-            }
+            Shop = shop;
+            UpdateAttributes();
         }
 
-        private string _lineTwo;
-        /// <summary>
-        /// Sample ViewModel property; this property is used in the view to display its value using a Binding.
-        /// </summary>
-        /// <returns></returns>
-        public string LineTwo
+        private void UpdateAttributes()
         {
-            get
-            {
-                return _lineTwo;
-            }
-            set
-            {
-                if (value != _lineTwo)
-                {
-                    _lineTwo = value;
-                    NotifyPropertyChanged("LineTwo");
-                }
-            }
+            Name = Shop.Name;
+            ImageUrl = Shop.ImageUrl;
+            Image = Shop.Image;
+            Id = Shop.Id;
+            NotifyPropertyChanged("Name");
+            NotifyPropertyChanged("ImageUrl");
+            NotifyPropertyChanged("Image");
+            NotifyPropertyChanged("Id");
         }
 
-        private string _lineThree;
-        /// <summary>
-        /// Sample ViewModel property; this property is used in the view to display its value using a Binding.
-        /// </summary>
-        /// <returns></returns>
-        public string LineThree
+        public int Id { get; private set; }
+        public string ImageUrl { get; private set; }
+        public BitmapImage Image { get; private set; }
+        public string Name { get; private set; }
+
+        private IShop _shop;
+        public IShop Shop
         {
             get
             {
-                return _lineThree;
+                return _shop;
             }
             set
             {
-                if (value != _lineThree)
+                if (value != _shop)
                 {
-                    _lineThree = value;
-                    NotifyPropertyChanged("LineThree");
+                    _shop = value;
+                    UpdateAttributes();
+                    NotifyPropertyChanged("Shop");
                 }
             }
         }

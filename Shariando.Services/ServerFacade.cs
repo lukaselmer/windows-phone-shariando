@@ -12,8 +12,13 @@ using Shariando.Services.Interfaces;
 
 namespace Shariando.Services
 {
+
     public class ServerFacade : IServerFacade
     {
+        public delegate void ShopsChange(IList<IShop> shops);
+
+        public event ShopsChange ShopsChanged;
+
         public void CheckEmail(string email, Action<IList<IShop>> callback)
         {
             SendPost(email);
@@ -59,7 +64,7 @@ namespace Shariando.Services
             {
                 List<Shop> shops = (List<Shop>)serializer.ReadObject(jsonStream);
                 IList<IShop> res = shops.Cast<IShop>().ToList();
-                Console.WriteLine(res);
+                if (ShopsChanged != null) ShopsChanged(res);
             }
         }
 
