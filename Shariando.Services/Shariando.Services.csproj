@@ -57,8 +57,10 @@
     <Reference Include="mscorlib.extensions" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="JsonWebRequest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServerFacade.cs" />
+    <Compile Include="ShariandoError.cs" />
     <Compile Include="Shop.cs" />
   </ItemGroup>
   <ItemGroup>

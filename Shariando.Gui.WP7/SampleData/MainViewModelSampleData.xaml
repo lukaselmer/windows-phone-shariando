@@ -1,10 +1,10 @@
-﻿<local:MainViewModel 
+﻿<ViewModels:MainViewModel 
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"       
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="clr-namespace:Shariando.Gui.WP7" 
+    xmlns:local="clr-namespace:Shariando.Gui.WP7" xmlns:ViewModels="clr-namespace:Shariando.Gui.WP7.ViewModels"
     SampleProperty="Sample Text Property Value">
     
-    <local:MainViewModel.Items>
+    <ViewModels:MainViewModel.Items>
         <local:ItemViewModel Name="Yves Rocher" ImageUrl="https://shariando.com/upload_files/shop_logos/81/png/d09bf41544a3365a46c9077ebb5e35c3.png?1316176213" Cashback="1.9 %"
                              Description="Bla blad wege weogig o4gj39i4gj goi4 aogj3 gowajeg93 4ga 4g09qa32w4tg0 0gj03g 032gj0934gj 09jg094jtg g0ag 4h0jaeolfj lsdf!"/>
         <local:ItemViewModel Name="Manor" ImageUrl="https://shariando.com/upload_files/shop_logos/32/png/f899139df5e1059396431415e770c6dd.png?1316176210" Cashback="1.9 %"/>
@@ -12,6 +12,6 @@
         <local:ItemViewModel Name="Brack.ch" ImageUrl="https://shariando.com/upload_files/shop_logos/8/png/182be0c5cdcd5072bb1864cdee4d3d6e.png?1316176208"/>
         <local:ItemViewModel Name="DeinDeal.ch" ImageUrl="https://shariando.com/upload_files/shop_logos/12/png/a1d0c6e83f027327d8461063f4ac58a6.png?1316176208"/>
         <local:ItemViewModel Name="Dell" ImageUrl="https://shariando.com/upload_files/shop_logos/13/png/c8ffe9a587b126f152ed3d89a146b445.png?1316176208"/>
-    </local:MainViewModel.Items>
+    </ViewModels:MainViewModel.Items>
     
-</local:MainViewModel>
+</ViewModels:MainViewModel>

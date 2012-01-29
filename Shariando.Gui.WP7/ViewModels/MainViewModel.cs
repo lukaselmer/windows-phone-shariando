@@ -1,33 +1,20 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.Text;
-using System.Threading;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using System.Collections.ObjectModel;
-using System.Windows.Threading;
 using Shariando.Services;
 using Shariando.Services.Interfaces;
 
-
-namespace Shariando.Gui.WP7
+namespace Shariando.Gui.WP7.ViewModels
 {
     public class MainViewModel : INotifyPropertyChanged
     {
-        private ServerFacade _serverFacade = new ServerFacade();
+        private readonly ServerFacade _serverFacade = new ServerFacade();
 
         public MainViewModel()
         {
-            _serverFacade.ShopsChanged += UpdateItems;
-            _serverFacade.CheckEmail("lukas.elmer@renuo.ch");
+            _serverFacade.CheckEmail("lukas.elmer@renuo.ch", UpdateItems, exception => { });
             Items = new ObservableCollection<ItemViewModel>();
         }
 
