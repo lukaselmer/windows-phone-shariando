@@ -54,6 +54,7 @@
     <Compile Include="Exceptions\ShariandoException.cs" />
     <Compile Include="Exceptions\ShariandoServerConnectionException.cs" />
     <Compile Include="IServerFacade.cs" />
+    <Compile Include="IShariandoService.cs" />
     <Compile Include="IShop.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

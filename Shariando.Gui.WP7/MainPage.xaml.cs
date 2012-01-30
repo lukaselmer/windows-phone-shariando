@@ -12,6 +12,7 @@ using System.Windows.Shapes;
 using Coding4Fun.Phone.Controls;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Tasks;
+using Shariando.Gui.WP7.ViewModels;
 
 namespace Shariando.Gui.WP7
 {
@@ -50,10 +51,15 @@ namespace Shariando.Gui.WP7
             }
         }
 
-        private void OpenShariandoBrowser(object sender, RoutedEventArgs e)
+        private void OpenShariandoRegistration(object sender, RoutedEventArgs e)
         {
             var webBrowserTask = new WebBrowserTask { Uri = new Uri("https://ch.shariando.com/users/new?locale=de", UriKind.Absolute) };
             webBrowserTask.Show();
+        }
+
+        private void LogoutCommand(object sender, EventArgs e)
+        {
+            ((MainViewModel)DataContext).LogoutCommand.Execute(e);
         }
     }
 }

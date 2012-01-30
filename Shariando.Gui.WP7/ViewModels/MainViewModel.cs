@@ -10,78 +10,66 @@ namespace Shariando.Gui.WP7.ViewModels
 {
     public class MainViewModel : ViewModelBase
     {
-        private readonly ServerFacade _serverFacade = new ServerFacade();
+        private readonly ShariandoService _shariandoService = new ShariandoService();
+        private string _email = "lukas.elmer@renuo.c";
+        private bool _enterEmail = true;
+        private string _errorMessage;
+        private bool _loading;
 
         public MainViewModel()
         {
-            //_serverFacade.CheckEmail("lukas.elmer@renuo.ch", CheckEmailSuccess, exception => { });
             Items = new ObservableCollection<ItemViewModel>();
+            Email = _shariandoService.Email;
+            if (Email != ShariandoService.DefaultEmail)
+            {
+                _shariandoService.CheckEmail(Email, CheckEmailSuccess, CheckEmailError);
+                EnterEmail = false;
+                Loading = true;
+            }
             InitCommands();
         }
 
-        private void InitCommands()
-        {
-            LoginCommand = new Command(CheckEmail, o => EnterEmail);
-        }
-
-        private void CheckEmail(object obj)
-        {
-            Loading = true;
-            EnterEmail = false;
-            _serverFacade.CheckEmail(Email, CheckEmailSuccess, CheckEmailError);
-        }
-
-        private void CheckEmailError(ShariandoException ex)
-        {
-            ExecuteOnUIThread(() =>
-            {
-                Loading = false;
-                EnterEmail = true;
-                ErrorMessage = ex.ErrorMessage;
-            });
-        }
-
         public ICommand LoginCommand { get; private set; }
+        public ICommand LogoutCommand { get; private set; }
 
-        private void CheckEmailSuccess(IList<IShop> shops)
-        {
-            ExecuteOnUIThread(() =>
-            {
-                Loading = false;
-                Items.Clear();
-                foreach (var shop in shops)
-                {
-                    Items.Add(new ItemViewModel(shop));
-                }
-            });
-        }
-
-        private bool _loading;
         public bool Loading
         {
             get { return _loading; }
-            set { _loading = value; NotifyPropertyChanged("Loading"); }
+            set
+            {
+                _loading = value;
+                NotifyPropertyChanged("Loading");
+            }
         }
 
-        private bool _enterEmail = true;
         public bool EnterEmail
         {
             get { return _enterEmail; }
-            set { _enterEmail = value; NotifyPropertyChanged("EnterEmail"); }
+            set
+            {
+                _enterEmail = value;
+                NotifyPropertyChanged("EnterEmail");
+            }
         }
 
-        private string _email = "lukas.elmer@renuo.c";
         public string Email
         {
             get { return _email; }
-            set { _email = value; NotifyPropertyChanged("Email"); }
+            set
+            {
+                _email = value;
+                NotifyPropertyChanged("Email");
+            }
         }
 
-        private string _errorMessage;
         public string ErrorMessage
         {
             get { return _errorMessage; }
-            set { _errorMessage = value; NotifyPropertyChanged("ErrorMessage"); }
+            set
+            {
+                _errorMessage = value;
+                NotifyPropertyChanged("ErrorMessage");
+            }
         }
 
         /// <summary>
@@ -91,12 +79,56 @@ namespace Shariando.Gui.WP7.ViewModels
 
         public bool IsDataLoaded { get; private set; }
 
+        private void InitCommands()
+        {
+            LoginCommand = new Command(CheckEmail);
+            LogoutCommand = new Command(Logout);
+        }
+
+        private void Logout(object obj)
+        {
+            _shariandoService.Logout();
+            Items.Clear();
+            EnterEmail = true;
+            Email = _shariandoService.Email;
+        }
+
+        private void CheckEmail(object obj)
+        {
+            Loading = true;
+            EnterEmail = false;
+            _shariandoService.CheckEmail(Email, CheckEmailSuccess, CheckEmailError);
+        }
+
+        private void CheckEmailError(ShariandoException ex)
+        {
+            ExecuteOnUIThread(() =>
+                                  {
+                                      Loading = false;
+                                      EnterEmail = true;
+                                      ErrorMessage = ex.ErrorMessage;
+                                  });
+        }
+
+        private void CheckEmailSuccess(IList<IShop> shops)
+        {
+            ExecuteOnUIThread(() =>
+                                  {
+                                      ErrorMessage = "";
+                                      Loading = false;
+                                      Items.Clear();
+                                      foreach (var shop in shops)
+                                      {
+                                          Items.Add(new ItemViewModel(shop, _shariandoService));
+                                      }
+                                  });
+        }
+
         /// <summary>
         /// Creates and adds a few ItemViewModel objects into the Items collection.
         /// </summary>
         public void LoadData()
         {
-            Items.Add(new ItemViewModel(new Shop { Id = 12, Name = "DeinDeal.ch", ImageName = "a1d0c6e83f027327d8461063f4ac58a6.gif" }));
             IsDataLoaded = true;
         }
     }

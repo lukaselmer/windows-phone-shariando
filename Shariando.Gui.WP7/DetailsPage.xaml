@@ -39,7 +39,7 @@
                 <TextBlock FontSize="22" TextAlignment="Center">Mindestens</TextBlock>
                 <TextBlock Text="{Binding Cashback}" FontSize="25" FontWeight="Bold" TextAlignment="Center" />
                 <TextBlock FontSize="22" TextAlignment="Center">Cashback</TextBlock>
-                <Button Content="zum Shop" Height="71" HorizontalAlignment="Left" Margin="6,0,6,0" Name="button1" VerticalAlignment="Top" Width="150" FontSize="22" />
+                <Button Command="{Binding OpenShopCommand}" Content="zum Shop" Height="71" HorizontalAlignment="Left" Margin="6,0,6,0" Name="button1" VerticalAlignment="Top" Width="150" FontSize="22" />
             </StackPanel>
         </Grid>
     </Grid>
