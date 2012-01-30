@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Threading;
-using System.Windows;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
-using Coding4Fun.Phone.Controls;
 using Shariando.Gui.WP7.Helpers;
 using Shariando.Services;
 using Shariando.Services.Interfaces;
