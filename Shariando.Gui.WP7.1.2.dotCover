@@ -1,6 +1,6 @@
 <Configuration>
   <SnapshotDialog>
-    <InitialDirectory>c:\users\lukas elmer\documents\visual studio 2010\Projects\Shariando.Gui.WP7</InitialDirectory>
+    <InitialDirectory>J:\dev\shariando_wp7</InitialDirectory>
   </SnapshotDialog>
   <CoverageFilters>
     <IncludeFilters>

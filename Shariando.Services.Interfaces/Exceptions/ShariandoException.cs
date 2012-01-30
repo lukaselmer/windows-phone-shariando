@@ -1,8 +1,9 @@
 using System;
 
-namespace Shariando.Services
+namespace Shariando.Services.Interfaces.Exceptions
 {
-    public class ShariandoException : Exception
+    public abstract class ShariandoException : Exception
     {
+        public abstract string ErrorMessage { get; }
     }
 }

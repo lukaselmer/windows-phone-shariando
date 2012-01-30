@@ -3,8 +3,12 @@ using System.Collections.Generic;
 using System.Threading;
 using System.Windows;
 using System.Collections.ObjectModel;
+using System.Windows.Input;
+using Coding4Fun.Phone.Controls;
+using Shariando.Gui.WP7.Helpers;
 using Shariando.Services;
 using Shariando.Services.Interfaces;
+using Shariando.Services.Interfaces.Exceptions;
 
 namespace Shariando.Gui.WP7.ViewModels
 {
@@ -14,15 +18,40 @@ namespace Shariando.Gui.WP7.ViewModels
 
         public MainViewModel()
         {
-            _serverFacade.CheckEmail("lukas.elmer@renuo.ch", UpdateItems, exception => { });
-            _loading = false;
+            //_serverFacade.CheckEmail("lukas.elmer@renuo.ch", CheckEmailSuccess, exception => { });
             Items = new ObservableCollection<ItemViewModel>();
+            InitCommands();
         }
 
-        private void UpdateItems(IList<IShop> shops)
+        private void InitCommands()
+        {
+            LoginCommand = new Command(CheckEmail, o => EnterEmail);
+        }
+
+        private void CheckEmail(object obj)
+        {
+            Loading = true;
+            EnterEmail = false;
+            _serverFacade.CheckEmail(Email, CheckEmailSuccess, CheckEmailError);
+        }
+
+        private void CheckEmailError(ShariandoException ex)
         {
             ExecuteOnUIThread(() =>
             {
+                Loading = false;
+                EnterEmail = true;
+                ErrorMessage = ex.ErrorMessage;
+            });
+        }
+
+        public ICommand LoginCommand { get; private set; }
+
+        private void CheckEmailSuccess(IList<IShop> shops)
+        {
+            ExecuteOnUIThread(() =>
+            {
+                Loading = false;
                 Items.Clear();
                 foreach (var shop in shops)
                 {
@@ -38,11 +67,25 @@ namespace Shariando.Gui.WP7.ViewModels
             set { _loading = value; NotifyPropertyChanged("Loading"); }
         }
 
-        private bool _enterEmail;
+        private bool _enterEmail = true;
         public bool EnterEmail
         {
             get { return _enterEmail; }
             set { _enterEmail = value; NotifyPropertyChanged("EnterEmail"); }
+        }
+
+        private string _email = "lukas.elmer@renuo.c";
+        public string Email
+        {
+            get { return _email; }
+            set { _email = value; NotifyPropertyChanged("Email"); }
+        }
+
+        private string _errorMessage;
+        public string ErrorMessage
+        {
+            get { return _errorMessage; }
+            set { _errorMessage = value; NotifyPropertyChanged("ErrorMessage"); }
         }
 
         /// <summary>

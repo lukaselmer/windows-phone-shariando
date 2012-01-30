@@ -9,7 +9,9 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
+using Coding4Fun.Phone.Controls;
 using Microsoft.Phone.Controls;
+using Microsoft.Phone.Tasks;
 
 namespace Shariando.Gui.WP7
 {
@@ -46,6 +48,12 @@ namespace Shariando.Gui.WP7
             {
                 App.ViewModel.LoadData();
             }
+        }
+
+        private void OpenShariandoBrowser(object sender, RoutedEventArgs e)
+        {
+            var webBrowserTask = new WebBrowserTask { Uri = new Uri("https://ch.shariando.com/users/new?locale=de", UriKind.Absolute) };
+            webBrowserTask.Show();
         }
     }
 }

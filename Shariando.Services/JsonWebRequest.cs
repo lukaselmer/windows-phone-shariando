@@ -4,19 +4,20 @@ using System.IO;
 using System.Net;
 using System.Runtime.Serialization.Json;
 using System.Text;
+using Shariando.Services.Interfaces.Exceptions;
 
 namespace Shariando.Services
 {
     internal class JsonWebRequest<TResult>
     {
-        private readonly Action<Exception> _onError;
+        private readonly Action<ShariandoException> _onError;
         private readonly Action<TResult> _onSuccess;
 
         private readonly Dictionary<string, Func<Exception>> _shariandoExceptionMapping = GetShariandoExceptionMapping();
 
         private HttpWebRequest _webRequest;
 
-        public JsonWebRequest(string url, Action<TResult> onSuccess, Action<Exception> onError)
+        public JsonWebRequest(string url, Action<TResult> onSuccess, Action<ShariandoException> onError)
         {
             _onSuccess = onSuccess;
             _onError = onError;

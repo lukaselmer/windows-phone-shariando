@@ -2,8 +2,10 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"       
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="clr-namespace:Shariando.Gui.WP7" xmlns:ViewModels="clr-namespace:Shariando.Gui.WP7.ViewModels"
-    Loading="False"
-    EnterEmail="False">
+    Loading="True"
+    EnterEmail="True"
+    ErrorMessage="Ihre Email Adresse wurde nicht gefunden. Bitte überprüfen Sie Ihre Email Adresse oder registrieren Sie sich unter https://shariando.com."
+    Email="lukas.elmer@gmail.com">
     
     <ViewModels:MainViewModel.Items>
         <local:ItemViewModel Name="Yves Rocher" ImageUrl="https://shariando.com/upload_files/shop_logos/81/png/d09bf41544a3365a46c9077ebb5e35c3.png?1316176213" Cashback="1.9 %"
