@@ -1,0 +1,27 @@
+﻿<UserControl x:Class="Shariando.Gui.WP7.LoadingOverlay"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+             xmlns:Controls="clr-namespace:Coding4Fun.Phone.Controls.Converters;assembly=Coding4Fun.Phone.Controls"
+             mc:Ignorable="d"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    d:DesignHeight="480" d:DesignWidth="480">
+
+    <UserControl.Resources>
+        <Controls:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+    </UserControl.Resources>
+
+    <!--<Border Background="#ee000000" Padding="30" Visibility="{Binding Loading, Converter={StaticResource BooleanToVisibilityConverter}}">-->
+    <Border Background="#ee000000" Padding="30" Visibility="Visible">
+        <Border HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="0 130 0 0" BorderBrush="#ffffff" Background="#333333" BorderThickness="1">
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 25 0 40">
+                <TextBlock FontSize="22" Margin="0 0 0 30">Daten werden geladen, bitte warten...</TextBlock>
+                <toolkit:PerformanceProgressBar x:Name="performanceProgressBar" IsIndeterminate="True" Foreground="#ffffff" />
+            </StackPanel>
+        </Border>
+    </Border>
+</UserControl>
