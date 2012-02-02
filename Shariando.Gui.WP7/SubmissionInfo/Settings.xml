@@ -1,9 +1,6 @@
 <MarketplaceDetails>
-  <SmallAppTile>
-  </SmallAppTile>
-  <LargeAppTile>
-  </LargeAppTile>
-  <PCAppTile>
-  </PCAppTile>
-  <ScreenShots>;;;;;;;;</ScreenShots>
+  <SmallAppTile>shariando_99x99.png</SmallAppTile>
+  <LargeAppTile>shariando_173x173.png</LargeAppTile>
+  <PCAppTile>shariando_200y200.png</PCAppTile>
+  <ScreenShots>all_shops.png;detail_books.png;detail_deindeal.png;login.png;logout.png;loading.png;;;</ScreenShots>
 </MarketplaceDetails>

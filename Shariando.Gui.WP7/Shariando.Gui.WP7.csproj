@@ -10,7 +10,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Shariando.Gui.WP7</RootNamespace>
-    <AssemblyName>Shariando.Gui.WP7</AssemblyName>
+    <AssemblyName>Shariando</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <SilverlightVersion>$(TargetFrameworkVersion)</SilverlightVersion>
     <TargetFrameworkProfile>WindowsPhone71</TargetFrameworkProfile>
@@ -20,7 +20,7 @@
     </SupportedCultures>
     <XapOutputs>true</XapOutputs>
     <GenerateSilverlightManifest>true</GenerateSilverlightManifest>
-    <XapFilename>Shariando.Gui.WP7.xap</XapFilename>
+    <XapFilename>Shariando.xap</XapFilename>
     <SilverlightManifestTemplate>Properties\AppManifest.xml</SilverlightManifestTemplate>
     <SilverlightAppEntry>Shariando.Gui.WP7.App</SilverlightAppEntry>
     <ValidateXaml>true</ValidateXaml>
